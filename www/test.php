@@ -10,8 +10,8 @@ try{
 	$con=new PDO('mysql:host=localhost;online_store=test'.DBNAME, DBUSER, DBPASS);
 
 	#set a verbose error mode
-	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
-}catch(PDOException $e) {
+	$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
+} catch(PDOException $e) {
 	echo $e->getMessage();
 }
 
