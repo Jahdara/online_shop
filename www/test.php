@@ -45,6 +45,12 @@ if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 		
 		#strip filename spaces
 		$strip_name = str_replace("", "_", $_FILES['pic']['name']);
+		$filename =$rnd.$strip_name;
+		$destination = 'uploads/' .$filename;
+
+		if(!move_uploaded_file($_FILES['pic']['tmp_name'], destination)){
+			$errors[] = "file upload failed";
+		}
 
 	if(empty($errors)){
 		echo "done";
