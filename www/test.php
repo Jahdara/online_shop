@@ -17,6 +17,7 @@ try{
 
 
 if(array_key_exists('save', $_POST)){
+	errors[] = "";
 	print_r($_FILES);
 }
 
