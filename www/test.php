@@ -43,6 +43,9 @@ if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 	#generate random number to append
 	$rnd = rand (0000000000, 9999999999);
 		
+		#strip filename spaces
+		$strip_name = str_replace("", "_", $_FILES['pic']['name']);
+
 	if(empty($errors)){
 		echo "done";
 	}else{
