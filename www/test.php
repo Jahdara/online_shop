@@ -19,6 +19,22 @@ try{
 if(array_key_exists('save', $_POST)){
 	print_r($_FILES);
 }
+
+#check file size
+if($_FILES['pic']['size'] > MAX_FILE_SIZE){
+	$error['pic'] = "file size exceeds maximum. maximum: ". MAX_FILE_SIZE; 
+}
+
+	if(empty($errors)){
+		echo "done";
+	}else{
+		foreach ($errors as $err){
+			echo $err. '</br>';
+		}
+
+	}
+	}
+
 ?>
 <form id="register" method="POST" enctype="multipart/form-data">
 
