@@ -40,7 +40,9 @@ if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 
 	}
 
-		#check file size
+	#generate random number to append
+	$rnd = rand (0000000000, 9999999999);
+		
 	if(empty($errors)){
 		echo "done";
 	}else{
