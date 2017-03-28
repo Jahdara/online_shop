@@ -23,7 +23,6 @@ $ext = ["img/jpg", "image/jpeg", "image/png"];
 
 if(array_key_exists('save', $_POST)){
 	$errors =[];
-print_r($_FILES); exit();
 
 #be sure a file is selected...
 if (empty ($_FILES['pic']['name'])){
@@ -41,14 +40,15 @@ if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 	}
 
 	#generate random number to append
-	$rnd = rand (0000000000, 9999999999);
+	$rnd = rand(0000000000, 9999999999);
 		
 		#strip filename spaces
 		$strip_name = str_replace("", "_", $_FILES['pic']['name']);
+		
 		$filename =$rnd.$strip_name;
 		$destination = 'uploads/' .$filename;
 
-		if(!move_uploaded_file($_FILES['pic']['tmp_name'], destination)){
+		if(!move_uploaded_file($_FILES['pic']['tmp_name'], $destination)){
 			$errors[] = "file upload failed";
 		}
 
