@@ -15,17 +15,23 @@ try{
 	echo $e->getMessage();
 }*/
 
+ #max file size
+define("MAX_FILE_SIZE", 2097152);
 
 if(array_key_exists('save', $_POST)){
-	errors[] = "";
-	print_r($_FILES);
-}
+	$errors =[];
+
+
+#be sure a file is selected...
+if (empty ($_FILES['pic']['name'])){
+	$errors[] = "Please choose a file";
+	}
 
 #check file size
-if($_FILES['pic']['size'] > MAX_FILE_SIZE){
-	$error['pic'] = "file size exceeds maximum. maximum: ". MAX_FILE_SIZE; 
+if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
+	$errors[]= "file size exceeds maximum. maximum: ". MAX_FILE_SIZE; 
 }
-
+		#check file size
 	if(empty($errors)){
 		echo "done";
 	}else{
@@ -34,7 +40,8 @@ if($_FILES['pic']['size'] > MAX_FILE_SIZE){
 		}
 
 	}
-	}
+
+}
 
 ?>
 <form id="register" method="POST" enctype="multipart/form-data">
