@@ -1,6 +1,6 @@
 <?php #test a sandbox
 
-	define('DBNAME','online_store');
+	/*define('DBNAME','online_store');
 	define('DBUSER', 'root');
 	define('DBPASS', 'native');
 
@@ -13,6 +13,6 @@ try{
 	$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
 } catch(PDOException $e) {
 	echo $e->getMessage();
-}
+}*/
 
 ?>
