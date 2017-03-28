@@ -1,5 +1,5 @@
 <?php
 
-	$con=new PDO('mysql:host=localhost;dbname=test', "root" "native")
+	$con=new PDO('mysql:host=localhost;online_store=test', "root" "native")
 
 ?>
