@@ -11,6 +11,8 @@ try{
 
 	#set a verbose error mode
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
+}catch(PDOException $e) {
+	echo $e->getMessage();
 }
 
 ?>
