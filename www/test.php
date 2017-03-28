@@ -5,6 +5,6 @@
 	define('DBPASS', 'native');
 
 
-	$con=new PDO('mysql:host=localhost;online_store=test'.DBNAME, "DBUSER", "DBPASS");
+	$con=new PDO('mysql:host=localhost;online_store=test'.DBNAME, DBUSER, DBPASS);
 
 ?>
