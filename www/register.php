@@ -1,6 +1,9 @@
 <?php
+	#title
+    $page_title = "Register";
+
 	#include header
-include 'includes/header.php';
+ 	include 'includes/header.php';
 
 ?>
 <div class="wrapper">
