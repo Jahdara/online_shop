@@ -28,7 +28,7 @@
  		}
 
  		if(empty($_POST['pword']) || $_POST['pword'] !=$_POST['password'] ){
- 			$errors['pword'] = "password do not match";
+ 			#$errors['pword'] = "password do not match";
 
  		}
 
