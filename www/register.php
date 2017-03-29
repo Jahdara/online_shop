@@ -14,6 +14,23 @@
  			$errors[] = "please enter a first name";
 
  		}
+ 		if(empty($_POST['lname'])) {
+ 			$errors[] = "please enter a last name";
+
+ 		}
+ 		if(empty($_POST['email'])) {
+ 			$errors[] = "please enter a Email";
+
+ 		}
+ 		if(empty($_POST['password'])) {
+ 			$errors[] = "please enter a Password";
+
+ 		}
+
+ 		if(empty($_POST['pword']) || $_POST['pword'] !=$_POST['password'] ){
+ 			$errors[] = "please enter a Confirm Password";
+
+ 		}
 
  		if(empty($errors)){
  		//do database stuff
