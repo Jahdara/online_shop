@@ -23,7 +23,7 @@
 	function doesEmailExist($dbcon, $email){
 		$result = false;
 
-		$stmt = $dbcon->preapare("SELECT email FROM admin WHERE email=e");
+		$stmt = $dbcon->prepare("SELECT email FROM admin WHERE email=:e");
 		#bind params
 		$stmt->bindParam(":e", $email);
 		$stmt->execute();
