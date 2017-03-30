@@ -24,7 +24,7 @@
  			$errors['lname'] = "please enter a last name";
 
  		}
- 		if(empty($_POST['email'])) {
+ 		if(doesEmailExist($con, $_POST['email'])) {
  			$errors['email'] = "please enter a Email";
 
  		}
