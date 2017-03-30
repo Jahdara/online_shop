@@ -37,6 +37,9 @@
 
  		if(empty($errors)){
  		//do database stuff
+
+ 			#eliminate unwanted spaces from values in the $_POST array
+ 			$clean = array_map('trim', $_POST)
  		
  		}
 
