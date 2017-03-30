@@ -5,6 +5,9 @@
     #load db connection
     include 'includes/db.php';
 
+    #include functions
+    includes 'includes/function.php';
+
 	#include header
  	include 'includes/header.php';
 
