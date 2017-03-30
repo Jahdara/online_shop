@@ -26,14 +26,16 @@
 
  		}
  		if(empty($_POST['password'])) {
- 			$errors['password'] = "please enter a Password";
+ 			$errors['password'] = "please enter Password";
 
  		}
 
- 		if(empty($_POST['pword']) || $_POST['pword'] !=$_POST['password'] ){
+ 		if($_POST['password'] != $_POST['pword']){
+ 			$errors['pword'] = "Password does not match";
  			#$errors['pword'] = "password do not match";
-
  		}
+
+ 		
 
  		if(empty($errors)){
  		//do database stuff
@@ -52,10 +54,10 @@
  				':fn' => $clean['fname'],
  				':ln' => $clean['lname'],
  				':e' => $clean['email'],
- 				':h' => $clean['password'] 
+ 				':h' => $hash
  			];
 
- 			$stmt->excutes($data);
+ 			$stmt->execute($data);
  		
  		}
 
