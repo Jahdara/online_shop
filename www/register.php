@@ -46,6 +46,16 @@
 
  			#insert data
  			$stmt = $con ->prepare("INSERT INTO admin(firstname, lastname, email, hash) VALUES(:fn, :ln, :e, :h)");
+
+ 			#bind params...
+ 			$data = [
+ 				':fn' => $clean['fname'],
+ 				':ln' => $clean['lname'],
+ 				':e' => $clean['email'],
+ 				':h' => $clean['password'] 
+ 			];
+
+ 			$stmt->excutes($data);
  		
  		}
 
