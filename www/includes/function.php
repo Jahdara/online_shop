@@ -31,6 +31,12 @@
 		#get number of rows returned
 		$count = $stmt->rowCount();
 
+		if($count > 0){
+			$result = true;
+		}
+
+		return $result;
+
 
 	}
 ?>
