@@ -89,7 +89,9 @@
 			</div>
 			<div>
 			<?php
-				if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>';}
+				//if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>';}
+				$biggie = displayErrors($errors, 'password');
+				echo $biggie;
 				?>
 				<label>password:</label>
 				<input type="password" name="password" placeholder="password">
