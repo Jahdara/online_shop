@@ -99,7 +99,9 @@
  
 			<div>
 			<?php
-				if(isset($errors['pword'])) { echo '<span class="err">'. $errors['pword']. '</span>';}
+				//if(isset($errors['pword'])) { echo '<span class="err">'. $errors['pword']. '</span>';}
+				$bum = displayErrors($errors, 'pword');
+				echo $bum;
 				?>
 				<label>confirm password:</label>	
 				<input type="password" name="pword" placeholder="password">
