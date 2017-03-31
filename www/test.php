@@ -16,10 +16,12 @@ try{
 }*/
 
  #max file size
+include 'includes/function.php'
+
 define("MAX_FILE_SIZE", 2097152);
 
 #allowed extension
-$ext = ["img/jpg", "image/jpeg", "image/png"];
+//$ext = ["img/jpg", "image/jpeg", "image/png"];
 
 if(array_key_exists('save', $_POST)){
 	$errors =[];
@@ -33,7 +35,7 @@ if (empty ($_FILES['pic']['name'])){
 if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 	$errors[]= "file size exceeds maximum. maximum: ". MAX_FILE_SIZE; 
 }
-	#check extension
+	/*#check extension
 	if(!in_array($_FILES['pic']['type'], $ext)){
 		$errors[] = "invalid file type";
 
@@ -51,7 +53,7 @@ if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 		if(!move_uploaded_file($_FILES['pic']['tmp_name'], $destination)){
 			$errors[] = "file upload failed";
 		}
-
+			*/
 	if(empty($errors)){
 		echo "done";
 	}else{
