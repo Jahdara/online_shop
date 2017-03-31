@@ -18,7 +18,7 @@
 	}
 	
 	if(empty($_POST['passowrd'])){
-		$errors['password'] = "Please enter your Password"
+		$errors['password'] = "Please enter your Password";
 	}
 
 		if(empty($errors)){
