@@ -5,6 +5,9 @@
 	#include header
 include 'includes/header.php';
 
+ 	#include db 
+	include 'includes/db.php';
+
 ?>
 
 <div class="wrapper">
