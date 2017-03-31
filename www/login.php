@@ -8,6 +8,11 @@ include 'includes/header.php';
  	#include db 
 	include 'includes/db.php';
 
+	if=array_key_exists('submit', $_POST){
+		#cache error
+		$error = [];
+	}
+
 ?>
 
 <div class="wrapper">
@@ -23,7 +28,7 @@ include 'includes/header.php';
 				<input type="password" name="password" placeholder="password">
 			</div>
 
-			<input type="submit" name="register" value="login">
+			<input type="submit" name="submit" value="login">
 		</form>
 
 		<h4 class="jumpto">Don't have an account? <a href="register.php">register</a></h4>
