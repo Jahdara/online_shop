@@ -3,14 +3,28 @@
     $page_title = "Login";
 
 	#include header
-include 'includes/header.php';
+	include 'includes/header.php';
 
  	#include db 
 	include 'includes/db.php';
 
-	if=array_key_exists('submit', $_POST){
+	if(array_key_exists('submit', $_POST)){
 		#cache error
-		$error = [];
+		$errors = [];
+
+	if(empty($_POST['email'])){
+		$errors['email'] = "Please enter your Email Adrress";
+
+	}
+	
+	if(empty($_POST['passowrd'])){
+		$errors['password'] = "Please enter your Password"
+	}
+
+		if(empty($errors)){
+
+		}
+
 	}
 
 ?>
