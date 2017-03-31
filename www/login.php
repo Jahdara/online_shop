@@ -1,4 +1,7 @@
 <?php
+
+	session_start();
+
 	#title
     $page_title = "Login";
 
@@ -8,41 +11,81 @@
  	#include db 
 	include 'includes/db.php';
 
+	include 'includes/function.php';
+
+$errors = [];
 	if(array_key_exists('submit', $_POST)){
 		#cache error
-		$errors = [];
+		
+
+		
+	
 
 	if(empty($_POST['email'])){
-		$errors[] = "Please enter your Email Adrress";
+		$errors['email'] = "Please enter your Email Adrress";
 
 	}
 	
 	if(empty($_POST['passowrd'])){
-		$errors[] = "Please enter your Password";
+		$errors['Password']="Please enter your Password";
 	}
 
 		if(empty($errors)){
-			//do database stuff
 
-			#eliminate unwanted spaces from values in the $_POST array
 			$clean = array_map('trim', $_POST);
 
+			#login admin
+			doAdminLogin($con, $clean);
+		}
+
+			//do database stuff
+
+/*	#eliminate unwanted spaces from values in the $_POST array
+			
 			#hash the password
 			$hash - password_hash($clean['password'],PASSWORD_BCRYPT);
+			
+			$stmt->fetch()
+			//if(password_verify('password', $hash))
+			if(password_verify('$clean['password']', $hash)){
+				echo 'Password is valid';
+
+			}
+			
+			}else{
+				echo 'Invalid password';
+			}	*/
 
 			#insert data
-			$stmt = $con->prepare("SELECT *FROM admin(email, hash)VALUES(:e, :h)");
+	//$stmt = $con->prepare("SELECT *FROM admin(email, hash)VALUES(:e, :h)");
 
 			#bind params
-			$data =[
+	
+/*	$data =[
 				':e' => $clean['email'],
 				':h' => $hash
 			];
 		
+			if($stmt->rowCount($con)==1){
+				
+				while($admin_detail = mysqli_fetch_array($con)){
 
-		}
+					//we establish section in admin
 
-	}
+				
+				header("Location:admin_home.php"); //WE LOG THE USER IN
+				
+				}
+				}else{					//IF RECORD IS NOT =1
+				
+			$login_error="Invalid Username and/or Password";
+			header("Location:admin_login.php?login_error=$login_error")	;
+			}
+
+				$stmt->execute($data);
+			}  */
+
+			}
 
 ?>
 
@@ -50,11 +93,16 @@
 		<h1 id="register-label">Admin Login</h1>
 		<hr>
 		<form id="register"  action ="login.php" method ="POST">
-			<div>
+			<div><?php
+				if(isset($errors['email'])) { echo '<span class="err">'. $errors['email']. '</span>';}
+				?>
 				<label>email:</label>
 				<input type="text" name="email" placeholder="email">
 			</div>
 			<div>
+			<?php
+				if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>';}
+				?>
 				<label>password:</label>
 				<input type="password" name="password" placeholder="password">
 			</div>
