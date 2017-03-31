@@ -81,8 +81,8 @@
 			<div>
 			<?php
 				//if(isset($errors['email'])) { echo '<span class="err">'. $errors['email']. '</span>';}
-			 	$display = displayErrors($errors, 'email');
-			 	echo $display;
+			 	$manup = displayErrors($errors, 'email');
+			 	echo $manup;
 				?>
 				<label>email:</label>
 				<input type="text" name="email" placeholder="email">
