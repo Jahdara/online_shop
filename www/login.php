@@ -13,15 +13,32 @@
 		$errors = [];
 
 	if(empty($_POST['email'])){
-		$errors['email'] = "Please enter your Email Adrress";
+		$errors[] = "Please enter your Email Adrress";
 
 	}
 	
 	if(empty($_POST['passowrd'])){
-		$errors['password'] = "Please enter your Password";
+		$errors[] = "Please enter your Password";
 	}
 
 		if(empty($errors)){
+			//do database stuff
+
+			#eliminate unwanted spaces from values in the $_POST array
+			$clean = array_map('trim', $_POST);
+
+			#hash the password
+			$hash - password_hash($clean['password'],PASSWORD_BCRYPT);
+
+			#insert data
+			$stmt = $con->prepare("SELECT *FROM admin(email, hash)VALUES(:e, :h)");
+
+			#bind params
+			$data =[
+				':e' => $clean['email'],
+				':h' => $hash
+			];
+		
 
 		}
 
