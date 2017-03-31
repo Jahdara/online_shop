@@ -5,13 +5,16 @@
     #load db connection
     include 'includes/db.php';
 
+    #include functions
+    include 'includes/function.php';
+
 	#include header
  	include 'includes/header.php';
 
+ 	$errors = [];
  	if(array_key_exists('register',$_POST )){
  		#cache errors
- 		$errors = [];
-
+ 		
  		#validate first name
  		if(empty($_POST['fname'])) {
  			$errors['fname'] = "please enter a first name";
@@ -21,7 +24,7 @@
  			$errors['lname'] = "please enter a last name";
 
  		}
- 		if(empty($_POST['email'])) {
+ 		if(doesEmailExist($con, $_POST['email'])) {
  			$errors['email'] = "please enter a Email";
 
  		}
@@ -43,22 +46,10 @@
  			#eliminate unwanted spaces from values in the $_POST array
  			$clean = array_map('trim', $_POST);
 
- 			#hash the password
- 			$hash = password_hash($clean['password'], PASSWORD_BCRYPT);
+ 			#register admin
+ 			doAdminRegister($con, $clean);
 
- 			#insert data
- 			$stmt = $con ->prepare("INSERT INTO admin(firstname, lastname, email, hash) VALUES(:fn, :ln, :e, :h)");
-
- 			#bind params...
- 			$data = [
- 				':fn' => $clean['fname'],
- 				':ln' => $clean['lname'],
- 				':e' => $clean['email'],
- 				':h' => $hash
- 			];
-
- 			$stmt->execute($data);
- 		
+ 			displayErrors($con, $clean);
  		}
 
  	}
@@ -70,7 +61,9 @@
 		<form id="register"  action ="register.php" method ="POST">
 			<div>
 				<?php
-					if(isset($errors['fname'])) { echo '<span class="err">'. $errors['fname']. '</span>';}
+					//if(isset($errors['fname'])) { echo '<span class="err">'. $errors['fname']. '</span>';}
+				$display = displayErrors($errors,'fname');
+				echo $display;
 				?>
 				<label>first name:</label>
 				<input type="text" name="fname" placeholder="first name">
