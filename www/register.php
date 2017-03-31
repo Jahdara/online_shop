@@ -70,7 +70,9 @@
 			</div>
 			<div>
 			<?php
-			if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>';}
+			//if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>';}
+			$display = displayErrors($errors, 'lname');
+			echo $display;
 			?>
 				<label>last name:</label>	
 				<input type="text" name="lname" placeholder="last name">
