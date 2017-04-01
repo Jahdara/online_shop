@@ -47,9 +47,10 @@
 	}
 
 	function doAdminLogin($dbcon, $input){
+		print_r(); exit();
 
 		//INSERT DATA INTO TABLE
-		$stmt = $dbcon->prepare("SELECT * FROM admin WHERE email = :e");
+		$stmt = $dbcon->prepare("SELECT * FROM admin WHERE email=:e");
 
 		#bind params
 
@@ -58,7 +59,7 @@
 		$count = $stmt->rowCount();
 
 		if($count == 1){
-			print_r($count); exit();
+			
 			
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 			
