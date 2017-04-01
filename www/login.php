@@ -31,6 +31,8 @@ $errors = [];
 	}
 
 		if(empty($errors)){
+			echo "i got here"; 
+			exit();
 
 			$clean = array_map('trim', $_POST);
 
