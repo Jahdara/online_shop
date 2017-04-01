@@ -40,8 +40,8 @@
 
 	function displayErrors($devo, $mad){
 		$result = "";
-		if(isset($devo[$mad])){
-			$result = '<span class = "err">'.$devo[$mad]. '</span>';
+		if(isset($devo['mad'])){
+			$result = '<span class = "err">'.$devo['mad']. '</span>';
 		}
 			return $result;
 	}
@@ -58,6 +58,7 @@
 		$count = $stmt->rowCount();
 
 		if($count == 1){
+			print_r($count); exit();
 			
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 			
@@ -75,26 +76,40 @@
 		}
 	}
 
-		function fileupload($hmm){
-		$ext = ["img/jpg", "image/jpeg", "image/png"];
-		#check extension
-	if(!in_array($_hmm['pic']['type'], $ext)){
-		$errors[] = "invalid file type";
+		function fileupload($hmm, $apple, $figo){
 
-	}
+		define("MAX_FILE_SIZE", 2097152);
+		
+		#$ext = ["img/jpg", "image/jpeg", "image/png"];
+
+		if (empty ($hmm[$figo]['name'])){
+	 	$apple[$figo] = "Please choose a file";
+	  }
+
+
+		if($hmm[$figo]['size'] > MAX_FILE_SIZE) {
+	   	$errors[$figo]= "file size exceeds maximum. maximum: ". MAX_FILE_SIZE; 
+}
+		
+		#check extension
+	/*if(!in_array($_hmm['figo']['type'], $ext)){
+		$apple[$figo] ="invalid file type";
+
+	}*/
 
 	#generate random number to append
 	$rnd = rand(0000000000, 9999999999);
 		
 		#strip filename spaces
-		$strip_name = str_replace("", "_", $hmm['pic']['name']);
+		$strip_name = str_replace("", "_", $hmm[$figo]['name']);
 		
 		$filename =$rnd.$strip_name;
 		$destination = 'uploads/' .$filename;
 
-		if(!move_uploaded_file($hmm['pic']['tmp_name'], $destination)){
-			$errors[] = "file upload failed";
+		if(!move_uploaded_file($hmm[$figo]['tmp_name'], $destination)){
+			$apple[$figo] = "file upload failed";
 		}
 
+	
 	}
 ?>
