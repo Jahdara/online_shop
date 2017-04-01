@@ -16,33 +16,36 @@ try{
 }*/
 
  #max file size
-include 'includes/function.php'
+include 'includes/function.php';
 
-define("MAX_FILE_SIZE", 2097152);
+#define("MAX_FILE_SIZE", 2097152);
 
 #allowed extension
-//$ext = ["img/jpg", "image/jpeg", "image/png"];
+$ext = ["img/jpg", "image/jpeg", "image/png"];
 
+$errors = [];
 if(array_key_exists('save', $_POST)){
-	$errors =[];
+	
+	fileupload($_FILES, $errors, 'pic');
 
 #be sure a file is selected...
 if (empty ($_FILES['pic']['name'])){
 	$errors[] = "Please choose a file";
-	}
-
+}
+	
+	/*
 #check file size
 if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 	$errors[]= "file size exceeds maximum. maximum: ". MAX_FILE_SIZE; 
-}
-	/*#check extension
+}*/
+	#check extension
 	if(!in_array($_FILES['pic']['type'], $ext)){
 		$errors[] = "invalid file type";
 
 	}
 
 	#generate random number to append
-	$rnd = rand(0000000000, 9999999999);
+	/*$rnd = rand(0000000000, 9999999999);
 		
 		#strip filename spaces
 		$strip_name = str_replace("", "_", $_FILES['pic']['name']);
@@ -54,6 +57,7 @@ if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 			$errors[] = "file upload failed";
 		}
 			*/
+		
 	if(empty($errors)){
 		echo "done";
 	}else{
@@ -61,6 +65,9 @@ if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 			echo $err. '</br>';
 		}
 
+		/*$clean = array_map('trim', $_POST);
+
+		displayErrors($con, $clean, $mash);*/
 	}
 
 }
@@ -69,7 +76,15 @@ if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
 <form id="register" method="POST" enctype="multipart/form-data">
 
 <p>please upload a file</p>
+
+<?php
+
+	#if(isset($error['pic'])) {echo '<span class="err">' .$error['pic']. '</span>';}
+	$display = displayErrors($errors, 'pic');
+			#echo $display;
+
+?>
 <input type= "file" name="pic">
 
-<input type="submit" name="save">
+<input type="submit" name="save" >
 </form>
