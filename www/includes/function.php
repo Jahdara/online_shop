@@ -36,7 +36,86 @@
 		}
 
 		return $result;
+<<<<<<< HEAD
 
 
+=======
+	}
+
+	function displayErrors($devo, $mad){
+		$result = "";
+		if(isset($devo['mad'])){
+			$result = '<span class = "err">'.$devo['mad']. '</span>';
+		}
+			return $result;
+	}
+
+	function doAdminLogin($dbcon, $input){
+		
+
+		//INSERT DATA INTO TABLE
+		$stmt = $dbcon->prepare("SELECT * FROM admin WHERE email=:e");
+
+		#bind params
+
+		$stmt->bindParam(":e", $input['email']);
+		$stmt->execute();
+		$count = $stmt->rowCount();
+
+		if($count == 1){
+			
+			
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			
+			if(password_verify($input['password'], $result['hash'])){
+				$_SESSION['id'] = $result['admin_id'];
+				$_SESSION['admin_name']= $result['email'];
+				
+				
+				header("Location:view.php");
+			}else{
+				
+				$login_error = "Invalid Username and/or Password";
+				header("Location:login.php?login_error=$login_error");
+			}
+		}
+	}
+
+		function fileupload($hmm, $apple, $figo){
+
+		define("MAX_FILE_SIZE", 2097152);
+		
+		#$ext = ["img/jpg", "image/jpeg", "image/png"];
+
+		if (empty ($hmm[$figo]['name'])){
+	 	$apple[$figo] = "Please choose a file";
+	  }
+
+
+		if($hmm[$figo]['size'] > MAX_FILE_SIZE) {
+	   	$errors[$figo]= "file size exceeds maximum. maximum: ". MAX_FILE_SIZE; 
+}
+		
+		#check extension
+	/*if(!in_array($_hmm['figo']['type'], $ext)){
+		$apple[$figo] ="invalid file type";
+
+	}*/
+
+	#generate random number to append
+	$rnd = rand(0000000000, 9999999999);
+		
+		#strip filename spaces
+		$strip_name = str_replace("", "_", $hmm[$figo]['name']);
+		
+		$filename =$rnd.$strip_name;
+		$destination = 'uploads/' .$filename;
+
+		if(!move_uploaded_file($hmm[$figo]['tmp_name'], $destination)){
+			$apple[$figo] = "file upload failed";
+		}
+
+	
+>>>>>>> another
 	}
 ?>
