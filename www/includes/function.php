@@ -47,7 +47,7 @@
 	}
 
 	function doAdminLogin($dbcon, $input){
-		print_r(); exit();
+		
 
 		//INSERT DATA INTO TABLE
 		$stmt = $dbcon->prepare("SELECT * FROM admin WHERE email=:e");
@@ -68,10 +68,10 @@
 				$_SESSION['admin_name']= $result['email'];
 				
 				
-				header("Location:home.php");
+				header("Location:view.php");
 			}else{
 				
-				$login_error = "Invalid Username and/or Passowrd";
+				$login_error = "Invalid Username and/or Password";
 				header("Location:login.php?login_error=$login_error");
 			}
 		}
